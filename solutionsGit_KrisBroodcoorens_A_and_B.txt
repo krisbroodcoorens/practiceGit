@@ -1,0 +1,478 @@
+Terminal & Git - Exercises
+
+-------------------------------------------------------------------------------------------------------
+A) Basic Git Commands (entered statements):
+-------------------------------------------------------------------------------------------------------
+
+	1) Create a new repo called "practiceGit" in your publc GitHub account. Initialize it with a readme file. Add a new file "file1.txt" to it, with content "Hello from file1".
+
+		Link => https://github.com/krisbroodcoorens/practiceGit	
+
+	2) Open GitBash. Check out which directory you are in. Create a new directory structure JavaReskilling/practiceGit on your computer. Use "ls" to check whether the directories were created correctly. Move to the gitProjects directory and initialize git here.
+
+		krisb@MSI MINGW64 /
+		$ mkdir JavaReskilling
+	
+		krisb@MSI MINGW64 /
+		$ cd JavaReskilling
+	
+		krisb@MSI MINGW64 /JavaReskilling
+		$ mkdir GitProjects
+			
+		krisb@MSI MINGW64 /JavaReskilling
+		$ ls
+		GitProjects/
+		
+		krisb@MSI MINGW64 /JavaReskilling
+		$ cd GitProjects
+	
+		krisb@MSI MINGW64 /JavaReskilling/GitProjects
+		$ git init
+		Initialized empty Git repository in C:/UserTemp/G74368/Git/JavaReskilling/GitProjects/.git/
+
+	3) Clone the repository created in exercise 1 into this directory.
+
+		krisb@MSI MINGW64 /JavaReskilling/GitProjects (master)
+		$ git clone https://github.com/krisbroodcoorens/practiceGit.git
+		Cloning into 'practiceGit'...
+		remote: Enumerating objects: 6, done.
+		remote: Counting objects: 100% (6/6), done.
+		remote: Compressing objects: 100% (3/3), done.
+		remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+		Unpacking objects: 100% (6/6), 1.26 KiB | 28.00 KiB/s, done.
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects (master)
+		$ cd practiceGit
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (master)
+		$ ls
+		file1.txt  README.md
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (master)
+		$ git log
+		commit 92ec565d118f7724162f5386768999a7d5ad14e1 (HEAD -> master)
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:39:39 2020 +0200
+
+	    	Initial commit
+
+	4) Create a new branch called "firstBranch" and switch to it. Try to do this in one command!	
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (master)
+		$ git checkout -b firstBranch
+		Switched to a new branch 'firstBranch'
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		nothing to commit, working tree clean
+
+	5) Add a file called "file2.txt" to the branch (you can make up some content) and stage it. Try to commit it without adding a commit message. Use "git status" regularly to see what is happening as from now!	
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ touch file2.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ echo "Hello from file 2 :-)" > file2.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ cat file2.txt
+		Hello from file 2 :-)
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Untracked files:
+	 	 (use "git add <file>..." to include in what will be committed)
+		        file2.txt
+
+		nothing added to commit but untracked files present (use "git add" to track)
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git add file2.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Changes to be committed:
+	  	(use "git restore --staged <file>..." to unstage)
+        	new file:   file2.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git commit -m firstBranch
+		[firstBranch 6ec5a8a] firstBranch
+	 	 1 file changed, 1 insertion(+)
+	 	 create mode 100644 file2.txt
+
+	6) Push the result to your remote repository and check via GitHub whether everything is there.
+	
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git push origin firstBranch
+		Enumerating objects: 4, done.
+		Counting objects: 100% (4/4), done.
+		Delta compression using up to 8 threads
+		Compressing objects: 100% (2/2), done.
+		Writing objects: 100% (3/3), 330 bytes | 330.00 KiB/s, done.
+		Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+		remote:
+		remote: Create a pull request for 'firstBranch' on GitHub by visiting:
+		remote:      https://github.com/krisbroodcoorens/practiceGit/pull/new/firstBranch
+		remote:
+		To https://github.com/krisbroodcoorens/practiceGit.git
+		 * [new branch]      firstBranch -> firstBranch
+
+-------------------------------------------------------------------------------------------------------
+B) Undoing things (entered statements):
+-------------------------------------------------------------------------------------------------------
+
+	1) Add two more files "file3.txt" and "file4.txt". Stage both of them. Unstage "file4.txt" again.
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		nothing to commit, working tree clean
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ touch file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ touch file4.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ echo "Hello from file3 :-)" > file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ echo "Hello from file4 :-)" > file4.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git add file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git add file4.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Changes to be committed:
+	  	(use "git restore --staged <file>..." to unstage)
+			new file:   file3.txt
+		        new file:   file4.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git rm --cached "file4.txt"
+		rm 'file4.txt'
+	
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Changes to be committed:
+		  (use "git restore --staged <file>..." to unstage)
+		        new file:   file3.txt
+	
+		Untracked files:
+		  (use "git add <file>..." to include in what will be committed)
+		        file4.txt
+
+	2) Commit and check git log. Change the commit message. Revert the last commit such that "file3.txt" is deleted from your directory.
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git commit -m "Commit file3.txt"
+		[firstBranch 8d48204] Commit file3.txt
+		 1 file changed, 1 insertion(+)
+		 create mode 100644 file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git log
+		commit 8d482045cb1bb29ebbc943682d5a9e369855a2e2 (HEAD -> firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:05:47 2020 +0200
+
+		    Commit file3.txt
+
+		commit 6ec5a8a15242542c11c8ba7d101a388d5052bf5f (origin/firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 11:41:45 2020 +0200
+
+		    firstBranch
+
+		commit db9b2ad7a5c4b572cdcc09d9ee4d5db7975fd8c5 (origin/master, origin/HEAD, master)
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:44:36 2020 +0200
+
+		    Create file1.txt
+
+		commit 92ec565d118f7724162f5386768999a7d5ad14e1
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:39:39 2020 +0200
+
+		    Initial commit
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git commit --amend
+		[firstBranch 40834ef] Commit file3.txt (Modified Message)
+		 Date: Fri Sep 18 12:05:47 2020 +0200
+		 1 file changed, 1 insertion(+)
+		 create mode 100644 file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git log
+		commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca (HEAD -> firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:05:47 2020 +0200
+
+		    Commit file3.txt (Modified Message)
+
+		commit 6ec5a8a15242542c11c8ba7d101a388d5052bf5f (origin/firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 11:41:45 2020 +0200
+
+		    firstBranch
+
+		commit db9b2ad7a5c4b572cdcc09d9ee4d5db7975fd8c5 (origin/master, origin/HEAD, master)
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:44:36 2020 +0200
+
+		    Create file1.txt
+
+		commit 92ec565d118f7724162f5386768999a7d5ad14e1
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:39:39 2020 +0200
+
+		    Initial commit
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git revert HEAD --no-edit
+		Removing file3.txt
+		[firstBranch 5a53407] Revert "Commit file3.txt (Modified Message)"
+		 Date: Fri Sep 18 12:21:17 2020 +0200
+		 1 file changed, 1 deletion(-)
+		 delete mode 100644 file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git log
+		commit 5a534072fbe9023f40301b7347e2489c2fd3f9f7 (HEAD -> firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:21:17 2020 +0200
+
+		    Revert "Commit file3.txt (Modified Message)"
+
+		    This reverts commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca.
+
+		commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:05:47 2020 +0200
+
+		    Commit file3.txt (Modified Message)
+
+		commit 6ec5a8a15242542c11c8ba7d101a388d5052bf5f (origin/firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 11:41:45 2020 +0200
+
+		    firstBranch
+
+		commit db9b2ad7a5c4b572cdcc09d9ee4d5db7975fd8c5 (origin/master, origin/HEAD, master)
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:44:36 2020 +0200
+
+		    Create file1.txt
+
+		commit 92ec565d118f7724162f5386768999a7d5ad14e1
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:39:39 2020 +0200
+
+		    Initial commit
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ ls
+		file1.txt  file2.txt  file4.txt  README.md
+
+	3) Try to undo your revert.
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git revert 5a5340
+		[firstBranch d08c92e] Revert "Revert "Commit file3.txt (Modified Message)""
+		 1 file changed, 1 insertion(+)
+		 create mode 100644 file3.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ ls
+		file1.txt  file2.txt  file3.txt  file4.txt  README.md
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Untracked files:
+		  (use "git add <file>..." to include in what will be committed)
+		        file4.txt
+
+		nothing added to commit but untracked files present (use "git add" to track)
+
+	4) Stage "file4.txt" again and commit. Undo the commit, but this time "file4.txt" should still say in your directory.	
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git add file4.txt
+		warning: LF will be replaced by CRLF in file4.txt.
+		The file will have its original line endings in your working directory
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Changes to be committed:
+		  (use "git restore --staged <file>..." to unstage)
+	        	new file:   file4.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git commit -m "Add file4.txt"
+		[firstBranch 97499b2] Add file4.txt
+		 1 file changed, 1 insertion(+)
+		 create mode 100644 file4.txt
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git log
+		commit 97499b25a718d0bf208f486ab0485daa753bafe2 (HEAD -> firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:35:39 2020 +0200
+
+		    Add file4.txt
+
+		commit d08c92e1bfe5896bf07bbc4d94c18ab7743d0ab8
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:33:23 2020 +0200
+
+		    Revert "Revert "Commit file3.txt (Modified Message)""
+
+		    This reverts commit 5a534072fbe9023f40301b7347e2489c2fd3f9f7.
+
+		commit 5a534072fbe9023f40301b7347e2489c2fd3f9f7
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:21:17 2020 +0200
+
+		    Revert "Commit file3.txt (Modified Message)"
+
+		    This reverts commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca.
+
+		commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:05:47 2020 +0200
+	
+		    Commit file3.txt (Modified Message)
+	
+		commit 6ec5a8a15242542c11c8ba7d101a388d5052bf5f (origin/firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 11:41:45 2020 +0200
+	
+		    firstBranch
+	
+		commit db9b2ad7a5c4b572cdcc09d9ee4d5db7975fd8c5 (origin/master, origin/HEAD, master)
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:44:36 2020 +0200
+
+		    Create file1.txt
+	
+		commit 92ec565d118f7724162f5386768999a7d5ad14e1
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:39:39 2020 +0200
+
+		    Initial commit
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git reset head^1
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git log
+		commit d08c92e1bfe5896bf07bbc4d94c18ab7743d0ab8 (HEAD -> firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:33:23 2020 +0200
+
+		    Revert "Revert "Commit file3.txt (Modified Message)""
+
+		    This reverts commit 5a534072fbe9023f40301b7347e2489c2fd3f9f7.
+
+		commit 5a534072fbe9023f40301b7347e2489c2fd3f9f7
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:21:17 2020 +0200
+
+		    Revert "Commit file3.txt (Modified Message)"
+
+		    This reverts commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca.
+
+		commit 40834ef7847e9e2b7c45f29cb9c15b4cc93eddca
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 12:05:47 2020 +0200
+
+		    Commit file3.txt (Modified Message)
+	
+		commit 6ec5a8a15242542c11c8ba7d101a388d5052bf5f (origin/firstBranch)
+		Author: krisbroodcoorens <kris.broodcoorens@bnpparibasfortis.com>
+		Date:   Fri Sep 18 11:41:45 2020 +0200
+
+		    firstBranch
+
+		commit db9b2ad7a5c4b572cdcc09d9ee4d5db7975fd8c5 (origin/master, origin/HEAD, master)
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:44:36 2020 +0200
+
+		    Create file1.txt
+
+		commit 92ec565d118f7724162f5386768999a7d5ad14e1
+		Author: krisbroodcoorens <70999596+krisbroodcoorens@users.noreply.github.com>
+		Date:   Fri Sep 18 10:39:39 2020 +0200
+
+		    Initial commit
+
+	5) Push to your remote repository again. Check that "file4.txt" is not present here.
+
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git status
+		On branch firstBranch
+		Untracked files:
+		  (use "git add <file>..." to include in what will be committed)
+		        file4.txt
+
+		nothing added to commit but untracked files present (use "git add" to track)
+	
+		krisb@MSI MINGW64 /JavaReskilling/gitProjects/practiceGit (firstBranch)
+		$ git push origin firstBranch
+		Enumerating objects: 6, done.
+		Counting objects: 100% (6/6), done.
+		Delta compression using up to 8 threads
+		Compressing objects: 100% (4/4), done.
+		Writing objects: 100% (5/5), 649 bytes | 649.00 KiB/s, done.
+		Total 5 (delta 2), reused 0 (delta 0), pack-reused 0
+		remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+		To https://github.com/krisbroodcoorens/practiceGit.git
+		   6ec5a8a..d08c92e  firstBranch -> firstBranch
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	
